@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Digital-7_Italic';
+    src: url('./fuentes/digital-7\ \(italic\).ttf');
+}
+
+.header{
+    width: 100%;
+    background-color: rgb(183 6 6);
+    color: white;
+    font-family: 'Digital-7_Italic';
+    text-align: center;
+    padding: 25px 0px;
+    font-size: 50px;
+}
+
+.container-tiempoRestante{
+    font-family: 'Digital-7_Italic';
+    width: 100%;
+    /* color: rgb(183 6 6);
+    background-color: #eaeaea; */
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 25px 0px;
+    text-align: center;
+    font-size: 180px;
+}
+
+.container-tiempoRestante input{
+    font-family: 'Digital-7_Italic';
+    background-color: black;
+    color: #fff;
+    /* color: rgb(183 6 6); */
+    text-decoration: none;
+    background: transparent;
+    width: 250px;
+    font-size: 180px;
+    border: none;
+    text-align: center;
+}
+
+.container-tiempoRestante input:focus{
+    outline: none;
+    caret-color: transparent;
+    /* border-bottom: 2px solid rgb(183 6 6); */
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.container-tiempoRestante 
+
+
+.tiempoRestante{
+    font-size: 200px;
+    color: rgb(183 6 6);
+    font-family: 'Digital-7_Italic';
+}
+
+.buttons-section{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px 0px;
+    margin: 0 auto;
+}
+
+.inputs-container{
+    border: 10px solid black;
+}
+
+#btnPausar{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(183 6 6);
+    color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+#btnIniciar{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(38 162 15);
+    color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+#btnRestablecer{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(205, 205, 17);
+    color: white;
+    border: none;
+    border-radius: 15px;
+}
+
+.message{
+    font-family: 'Digital-7_Italic';
+    font-size: 25px;
+    color: rgb(183 6 6);
+    text-align: center;
+    padding: 25px 0px;
+    background-color: #fff;
+}
