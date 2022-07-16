@@ -20,23 +20,23 @@
 }
 
 .container-tiempoRestante{
+    display: flex;
+    flex-direction: row;
     font-family: 'Digital-7_Italic';
     width: 100%;
-    /* color: rgb(183 6 6);
-    background-color: #eaeaea; */
     background-color: black;
     color: #fff;
     text-align: center;
     padding: 25px 0px;
     text-align: center;
     font-size: 180px;
+    justify-content: center;
 }
 
 .container-tiempoRestante input{
     font-family: 'Digital-7_Italic';
     background-color: black;
     color: #fff;
-    /* color: rgb(183 6 6); */
     text-decoration: none;
     background: transparent;
     width: 250px;
@@ -48,12 +48,8 @@
 .container-tiempoRestante input:focus{
     outline: none;
     caret-color: transparent;
-    /* border-bottom: 2px solid rgb(183 6 6); */
     border-bottom: 2px solid rgb(255, 255, 255);
 }
-
-.container-tiempoRestante 
-
 
 .tiempoRestante{
     font-size: 200px;
@@ -108,4 +104,19 @@
     text-align: center;
     padding: 25px 0px;
     background-color: #fff;
+}
+
+
+.horas_container, .minutos_container, .segundos_container, .milisegundos_container{
+    display: flex;
+    flex-direction: column;
+    width: 259px;
+}
+
+.horas_container span, .minutos_container span, .segundos_container span, .milisegundos_container span{
+    font-family: 'Digital-7_Italic';
+    font-size: 25px;
+    color: rgb(183 6 6);
+    text-align: center;
+    padding: 25px 0px;
 }
