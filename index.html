@@ -5,51 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
     <title>Temporizador en Javascript</title>
 </head>
 <body>
-    <header>
-        <h1 class="header">Temporizador en Javascript</h1>
+    <header class="header">
+        <h1>Temporizador en Javascript</h1>
     </header>
     <main class="message">
-        <h2>Por favor, ingresa un valor, para iniciar el temporizador</h2>
+        <h2>Por favor, ingresa un valor para iniciar el temporizador</h2>
     </main>
     <section>
         <div class="container-tiempoRestante">
-            <div class="horas_container">   
+            <div>   
                 <span>Horas</span>
                 <input type="text" value="" placeholder="00" id="horas">
             </div>
-            <p>:</p>
-            <div class="minutos_container">   
+            <p style="padding-top: 70px;">:</p>
+            <div>   
                 <span>Minutos</span>
                 <input type="text" value="" placeholder="00" id="minutos" min="0" max="60">
             </div>
-            <p>:</p>
-            <div class="segundos_container">
+            <p style="padding-top: 70px;">:</p>
+            <div>
                 <span>Segundos</span>
                 <input type="text" value="" placeholder="00" id="segundos" min="0" max="60">
             </div>
-            <span>:</span>
-            <div class="milisegundos_container">
-                <span>Milisegundos</span>
-                <input type="text" value="000" id="milisegundos" disabled>
-            </div> 
         </div>
         <div class="buttons-section">
             <button id="btnPausar" onclick="pausarTemporizador()">Pausar</button>
             <button id="btnIniciar" onclick="iniciarTemporizador()">Iniciar</button>
+            <button id="btnContinuar" onclick="continuarTemporizador()">Continuar</button>
             <button id="btnRestablecer" onclick="restablecerTemporizador()">Restablecer</button>
+            <button id="btnVolverAUsar" onclick="volverAUsar()">Usar de nuevo</button>
         </div>
     </section>
     <script>
         const btnPausar = document.getElementById('btnPausar');
         const btnIniciar = document.getElementById('btnIniciar');
         const btnRestablecer = document.getElementById('btnRestablecer');
+        const btnContinuar = document.getElementById('btnContinuar');
+        const btnVolverAUsar = document.getElementById('btnVolverAUsar');
         const las_horas = document.getElementById('horas');
         const los_minutos = document.getElementById('minutos');
         const los_segundos = document.getElementById('segundos');
-        const los_milisegundos = document.getElementById('milisegundos');
         const message = document.getElementsByClassName('message')[0];
         let idInterval = null;
         let diferenciaTemporal = 0;
@@ -66,6 +68,8 @@
         ocultarElemento(btnPausar);
         ocultarElemento(btnIniciar);
         ocultarElemento(btnRestablecer);
+        ocultarElemento(btnContinuar);
+        ocultarElemento(btnVolverAUsar);
 
         los_minutos.addEventListener('keyup', () => {
             if (los_minutos.value > 59) {
@@ -79,30 +83,28 @@
             }
         });
 
+        las_horas.addEventListener('change', () => {
+            mostrarElemento(btnIniciar);
+        });
         los_minutos.addEventListener('change', () => {
             mostrarElemento(btnIniciar);
         });
         los_segundos.addEventListener('change', () => {
             mostrarElemento(btnIniciar);
         });
-        los_milisegundos.addEventListener('change', () => {
-            mostrarElemento(btnIniciar);
-        });
 
-        las_horas.addEventListener('change', () => {
-            mostrarElemento(btnIniciar);
-        });
+        if(las_horas.value == '0' || los_minutos.value == '0' || los_segundos.value == '0') {
+            mostrarElemento(btnRestablecer);
+        }
 
         const milisegundosaHorasMinutosSegundos = milisegundos => {
             const horas = Math.floor(milisegundos / 3600000);
             const minutos = Math.floor((milisegundos - (horas * 3600000)) / 60000);
             const segundos = Math.floor((milisegundos - (horas * 3600000) - (minutos * 60000)) / 1000);
-            const milisegundos_ = milisegundos - (horas * 3600000) - (minutos * 60000) - (segundos * 1000);
             return {
                 horas,
                 minutos,
-                segundos,
-                milisegundos
+                segundos
             };
         }
         
@@ -110,8 +112,7 @@
             let horas = document.getElementById('horas');
             let minutos = document.getElementById('minutos');
             let segundos = document.getElementById('segundos');
-            let milisegundos = document.getElementById('milisegundos');
-            
+
             if(horas.value == ''){
                 horas.value = '00';
             }else{
@@ -139,35 +140,45 @@
             las_horas.value = "";
             los_minutos.value = "";
             los_segundos.value = "";
-            los_milisegundos.value = "000";
             mostrarElemento(message);
             ocultarElemento(btnIniciar);
             ocultarElemento(btnRestablecer);
             ocultarElemento(btnPausar);
+            ocultarElemento(btnContinuar);
+            ocultarElemento(btnVolverAUsar);
         }
 
         const pausarTemporizador = () => {
             clearInterval(idInterval);
-            mostrarElemento(btnPausar);
+            ocultarElemento(btnPausar);
             ocultarElemento(btnIniciar);
             ocultarElemento(btnRestablecer);
+            mostrarElemento(btnContinuar);
+            mostrarElemento(btnVolverAUsar);
+        }
+
+        const continuarTemporizador = () =>{
+            let horas = document.getElementById('horas');
+            let minutos = document.getElementById('minutos');
+            let segundos = document.getElementById('segundos');
+            comenzar_temporizador(horas.value, minutos.value, segundos.value);
+
+            mostrarElemento(btnPausar);
+            mostrarElemento(btnIniciar);
+            mostrarElemento(btnRestablecer);
+            ocultarElemento(btnContinuar);
+            ocultarElemento(btnVolverAUsar);
         }
 
         const comenzar_temporizador = (horas, minutos, segundos) => {
-            console.log(horas, minutos, segundos);
             ocultarElemento(message);
             mostrarElemento(btnPausar);
             mostrarElemento(btnRestablecer);
             mostrarElemento(btnIniciar);
-            if(fechaFuturo){
-                fechaFuturo = new Date(new Date().getTime() - diferenciaTemporal);
-                diferenciaTemporal = 0;
-            }else{
-                const tiempoEnMiliSegundos = (horas * 60 * 60 * 1000) + (minutos * 60 * 1000) + (segundos * 1000);
-                console.log(tiempoEnMiliSegundos)
-                fechaFuturo = new Date(new Date().getTime() + tiempoEnMiliSegundos);
-                console.log(fechaFuturo);
-            }
+            ocultarElemento(btnContinuar);
+            ocultarElemento(btnVolverAUsar);
+            const tiempoEnMiliSegundos = (horas * 60 * 60 * 1000) + (minutos * 60 * 1000) + (segundos * 1000);
+            fechaFuturo = new Date((new Date().getTime()) + tiempoEnMiliSegundos);
             clearInterval(idInterval);
             idInterval = setInterval(() => {
                 const tiempoRestante = fechaFuturo.getTime() - new Date().getTime();
@@ -175,16 +186,22 @@
                     clearInterval(idInterval);
                     ocultarElemento(btnPausar);
                     ocultarElemento(btnRestablecer);
+                    ocultarElemento(btnIniciar);
+                    ocultarElemento(btnContinuar);
+                    mostrarElemento(btnVolverAUsar);
                 }else{
                     ocultarElemento(btnIniciar);
                     let mostrarTiempo = milisegundosaHorasMinutosSegundos(tiempoRestante);
                     las_horas.value = mostrarTiempo.horas;
                     los_minutos.value = mostrarTiempo.minutos;
                     los_segundos.value = mostrarTiempo.segundos;
-                    los_milisegundos.value = mostrarTiempo.milisegundos;
                 }
             }, 50);
         };
+
+        const volverAUsar = () => {
+            location.reload();
+        }
     </script>
 </body>
 </html>
