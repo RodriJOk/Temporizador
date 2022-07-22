@@ -142,6 +142,7 @@ body{
         font-size: 80px;
         border: none;
         text-align: center;
+        min-height: 110px;
     }
     .container-tiempoRestante div input:focus{
         outline: none;
