@@ -108,9 +108,6 @@ body{
         width: 100%;
         font-size: 15px;
     }
-    .container-tiempoRestante{
-        overflow: hidden;
-    }
     .message{
         font-size: 14px;
     }
@@ -121,6 +118,8 @@ body{
         justify-content: center;
         margin: 4rem auto;
         font-size: 100px;
+        min-height: 250px;
+        overflow: hidden;
     }
     .container-tiempoRestante div{
         display: flex;
