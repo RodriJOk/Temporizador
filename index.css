@@ -126,6 +126,7 @@ body{
         display: flex;
         flex-direction: column;
         width: 6rem;
+        min-height: 200px;
     }
     .container-tiempoRestante div span{
         font-size: 25px;
