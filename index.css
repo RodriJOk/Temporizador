@@ -121,7 +121,6 @@ body{
         margin: 4rem auto;
         font-size: 100px;
         min-height: 250px;
-        overflow: hidden;
     }
     .container-tiempoRestante div{
         display: flex;
