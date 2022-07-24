@@ -184,6 +184,8 @@
                 const tiempoRestante = fechaFuturo.getTime() - new Date().getTime();
                 if(tiempoRestante <= 0){
                     clearInterval(idInterval);
+                    const audio = new Audio('/sonido/alarm.wav');
+                    audio.play();
                     ocultarElemento(btnPausar);
                     ocultarElemento(btnRestablecer);
                     ocultarElemento(btnIniciar);
