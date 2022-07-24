@@ -143,7 +143,7 @@ body{
         border: none;
         text-align: center;
         min-height: 110px;
-        padding-bottom: 25px;
+        padding-bottom: 50px;
         border: 10px solid;
     }
     .container-tiempoRestante div input:focus{
