@@ -142,9 +142,6 @@ body{
         font-size: 60px;
         border: none;
         text-align: center;
-        min-height: 250px;
-        padding-bottom: 165px;    
-        border: 10px solid red;
     }
     #horas, #minutos, #segundos:focus{
         outline: none;
