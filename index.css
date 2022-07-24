@@ -144,7 +144,7 @@ body{
         text-align: center;
         min-height: 250px;
         padding-bottom: 165px;    
-        border: 10px solid;
+        border: 10px solid red;
     }
     .container-tiempoRestante div input:focus{
         outline: none;
